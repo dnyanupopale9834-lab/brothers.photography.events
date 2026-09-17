@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ब्रदर्स फोटोग्राफी | Brothers Photography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F7F1E6;
+    --bg-card: #FFFDF9;
+    --ink: #241B16;
+    --ink-soft: #6E6055;
+    --wine: #7C1F3B;
+    --wine-dark: #591530;
+    --gold: #C0902E;
+    --teal: #163F3A;
+    --teal-light: #EAF1EF;
+    --line: rgba(36,27,22,0.12);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Manrope', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces', serif;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,241,230,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;max-width:1180px;margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif;font-weight:600;font-size:1.4rem;letter-spacing:0.01em;
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .brand span{color:var(--wine);font-style:italic;}
+  nav.links{display:flex;gap:34px;font-size:0.95rem;font-weight:500;}
+  nav.links a{text-decoration:none;color:var(--ink);position:relative;padding-bottom:4px;}
+  nav.links a::after{
+    content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--wine);
+    transition:width .3s ease;
+  }
+  nav.links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--wine);color:#fff;padding:10px 22px;border-radius:var(--radius);
+    text-decoration:none;font-weight:600;font-size:0.92rem;
+    box-shadow:3px 3px 0 var(--gold);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .nav-cta:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--gold);}
+  .burger{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink);}
+  .mobile-links{display:none;flex-direction:column;gap:0;background:var(--bg-card);border-top:1px solid var(--line);}
+  .mobile-links a{padding:16px 28px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line);font-weight:500;}
+  .mobile-links.open{display:flex;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:80px 0 60px;
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:50px;align-items:center;
+  }
+  .hero-text .eyebrow{
+    color:var(--wine);font-weight:700;font-size:0.95rem;margin-bottom:14px;
+  }
+  .hero-text h1{
+    font-size:3.4rem;line-height:1.08;font-weight:600;margin:0 0 22px;
+    letter-spacing:-0.01em;
+  }
+  .hero-text h1 em{font-style:italic;color:var(--wine);font-weight:500;}
+  .hero-text p{
+    font-size:1.12rem;color:var(--ink-soft);max-width:46ch;margin:0 0 34px;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--teal);color:#fff;padding:15px 30px;border-radius:var(--radius);
+    text-decoration:none;font-weight:700;font-size:1rem;border:none;cursor:pointer;
+    box-shadow:4px 4px 0 var(--gold);transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--gold);}
+  .btn-ghost{
+    padding:15px 26px;border-radius:var(--radius);border:1.5px solid var(--ink);
+    text-decoration:none;font-weight:600;color:var(--ink);font-size:1rem;
+  }
+  .hero-collage{
+    position:relative;height:440px;
+  }
+  .hero-collage img{
+    position:absolute;object-fit:cover;border-radius:3px;
+    box-shadow:0 18px 40px rgba(36,27,22,0.25);
+    transition:transform .4s ease;
+  }
+  .hc1{width:56%;height:62%;top:0;right:0;z-index:2;transform:rotate(2deg);}
+  .hc2{width:48%;height:48%;bottom:0;left:0;z-index:3;transform:rotate(-4deg);border:6px solid var(--bg-card);}
+  .hc3{width:34%;height:34%;top:14%;left:6%;z-index:1;transform:rotate(-8deg);}
+  .hero-collage img:hover{transform:scale(1.04) rotate(0deg);z-index:4;}
+
+  /* ---------- MARQUEE STRIP ---------- */
+  .strip{
+    background:var(--wine);color:#fff;padding:14px 0;overflow:hidden;white-space:nowrap;
+  }
+  .strip-inner{display:inline-block;animation:scroll 22s linear infinite;font-family:'Fraunces',serif;font-style:italic;font-size:1.15rem;}
+  .strip-inner span{margin:0 26px;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- ABOUT ---------- */
+  .about{padding:100px 0;display:grid;grid-template-columns:0.8fr 1.2fr;gap:60px;align-items:start;}
+  .about-label{color:var(--gold);font-weight:700;letter-spacing:0.02em;margin-bottom:10px;}
+  .about h2{font-size:2.3rem;font-weight:600;margin:0 0 20px;line-height:1.2;}
+  .about p{color:var(--ink-soft);font-size:1.05rem;max-width:60ch;margin:0 0 16px;}
+  .founders{display:flex;gap:22px;margin-top:30px;}
+  .founder-card{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:4px;padding:18px 20px;flex:1;
+  }
+  .founder-card h4{margin:0 0 4px;font-family:'Fraunces',serif;font-size:1.1rem;}
+  .founder-card span{color:var(--wine);font-size:0.85rem;font-weight:600;}
+
+  /* ---------- SERVICES ---------- */
+  .services{padding:20px 0 100px;}
+  .section-head{max-width:640px;margin-bottom:50px;}
+  .section-head .about-label{color:var(--wine);}
+  .section-head h2{font-size:2.3rem;margin:0;font-weight:600;}
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--ink);border-radius:4px;overflow:hidden;}
+  .svc-card{
+    background:var(--bg-card);padding:32px 24px;min-height:230px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    transition:background .3s ease, color .3s ease;
+  }
+  .svc-card:nth-child(2){background:var(--teal-light);}
+  .svc-card h3{font-size:1.25rem;margin:0 0 10px;font-weight:600;}
+  .svc-card p{color:var(--ink-soft);font-size:0.92rem;margin:0;}
+  .svc-card:hover{background:var(--wine);color:#fff;}
+  .svc-card:hover p{color:rgba(255,255,255,0.85);}
+  .svc-num{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);font-size:0.95rem;}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{padding:100px 0;background:var(--teal);color:#fff;}
+  .gallery .section-head h2{color:#fff;}
+  .gallery .about-label{color:var(--gold);}
+  .gal-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:10px;
+  }
+  .gal-item{position:relative;overflow:hidden;border-radius:3px;cursor:pointer;}
+  .gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .gal-item:hover img{transform:scale(1.08);}
+  .gal-item.big{grid-column:span 2;grid-row:span 2;}
+  .gal-cap{
+    position:absolute;inset:auto 0 0 0;padding:14px 16px;
+    background:linear-gradient(to top, rgba(22,63,58,0.92), transparent);
+    font-size:0.85rem;font-weight:600;transform:translateY(100%);transition:transform .3s ease;
+  }
+  .gal-item:hover .gal-cap{transform:translateY(0);}
+
+  /* Lightbox */
+  .lightbox{
+    display:none;position:fixed;inset:0;background:rgba(22,17,14,0.92);z-index:100;
+    align-items:center;justify-content:center;padding:30px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:88vw;max-height:82vh;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+  .lightbox-close{
+    position:absolute;top:26px;right:34px;color:#fff;font-size:2rem;background:none;border:none;cursor:pointer;
+  }
+
+  /* ---------- ENQUIRY ---------- */
+  .enquiry{padding:100px 0;}
+  .enq-box{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:6px;
+    display:grid;grid-template-columns:1fr 1fr;overflow:hidden;
+    box-shadow:8px 8px 0 var(--gold);
+  }
+  .enq-left{background:var(--wine);color:#fff;padding:50px 44px;display:flex;flex-direction:column;justify-content:center;}
+  .enq-left h2{font-size:2rem;margin:0 0 16px;font-weight:600;}
+  .enq-left p{color:rgba(255,255,255,0.85);font-size:0.98rem;margin:0;}
+  .enq-left .wa-numbers{margin-top:30px;font-size:0.9rem;color:rgba(255,255,255,0.75);}
+  .enq-left .wa-numbers div{margin-bottom:4px;}
+  .enq-right{padding:50px 44px;}
+  .field{margin-bottom:20px;}
+  .field label{display:block;font-weight:600;font-size:0.9rem;margin-bottom:8px;}
+  .field input, .field textarea{
+    width:100%;border:1.5px solid var(--line);border-radius:3px;padding:13px 14px;
+    font-family:'Manrope',sans-serif;font-size:0.98rem;background:var(--bg);color:var(--ink);
+    resize:vertical;
+  }
+  .field textarea{min-height:110px;}
+  .field input:focus, .field textarea:focus{outline:2px solid var(--wine);outline-offset:1px;}
+  .radio-row{display:flex;gap:14px;}
+  .radio-opt{
+    flex:1;border:1.5px solid var(--line);border-radius:3px;padding:12px 14px;cursor:pointer;
+    display:flex;align-items:center;gap:10px;font-size:0.9rem;font-weight:600;
+  }
+  .radio-opt:has(input:checked){border-color:var(--wine);background:var(--teal-light);}
+  .send-btn{
+    width:100%;background:var(--teal);color:#fff;border:none;padding:16px;border-radius:3px;
+    font-weight:700;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;
+    box-shadow:4px 4px 0 var(--gold);transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .send-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--gold);}
+  .hint{font-size:0.8rem;color:var(--ink-soft);margin-top:10px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:rgba(255,255,255,0.8);padding:50px 0 28px;}
+  .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,0.12);}
+  footer .brand{color:#fff;}
+  footer .brand span{color:var(--gold);}
+  .foot-links{display:flex;gap:36px;font-size:0.92rem;}
+  .foot-links a{text-decoration:none;color:rgba(255,255,255,0.8);}
+  .foot-bottom{padding-top:22px;font-size:0.82rem;color:rgba(255,255,255,0.55);text-align:center;}
+
+  /* ---------- FLOATING WHATSAPP ---------- */
+  .float-wa{
+    position:fixed;bottom:26px;right:26px;z-index:60;background:#1EAD57;color:#fff;
+    width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 22px rgba(0,0,0,0.3);text-decoration:none;font-size:1.6rem;
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{box-shadow:0 8px 22px rgba(0,0,0,0.3);}50%{box-shadow:0 8px 22px rgba(30,173,87,0.55);}}
+
+  @media (max-width: 900px){
+    nav.links,.nav-cta{display:none;}
+    .burger{display:block;}
+    .hero{grid-template-columns:1fr;padding-top:40px;}
+    .hero-text h1{font-size:2.5rem;}
+    .hero-collage{height:340px;order:-1;}
+    .about{grid-template-columns:1fr;}
+    .founders{flex-direction:column;}
+    .svc-grid{grid-template-columns:repeat(2,1fr);}
+    .gal-grid{grid-template-columns:repeat(2,1fr);}
+    .gal-item.big{grid-column:span 2;}
+    .enq-box{grid-template-columns:1fr;}
+    .radio-row{flex-direction:column;}
+  }
+   /* =========================
+       HERO
+    ========================= */
+ 
+    .hero {
+      min-height: 730px;
+ 
+      display: grid;
+      grid-template-columns: 50% 50%;
+ 
+      background: #f8f3e9;
+    }
+ 
+    /* LEFT IMAGE */
+ 
+    .hero-image {
+      min-height: 730px;
+ 
+      background-image:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.05),
+          rgba(0,0,0,0.25)
+        ),
+        url("camera.jpg");
+ 
+      background-size: cover;
+      background-position: center;
+ 
+      position: relative;
+ 
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+ 
+    .photo-text {
+      margin-top: 80px;
+      text-align: center;
+ 
+      color: white;
+ 
+      text-shadow: 0 2px 15px rgba(0,0,0,0.35);
+    }
+ 
+    .photo-text h2 {
+      font-family: cursive;
+      font-size: 48px;
+      font-weight: 400;
+    }
+ 
+    .photo-text p {
+      font-family: Arial, sans-serif;
+ 
+      letter-spacing: 5px;
+      font-size: 16px;
+ 
+      margin-top: 8px;
+    }
+ 
+ 
+    /* RIGHT CONTENT */
+ 
+    .hero-content {
+      padding: 85px 8% 70px;
+ 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+ 
+    .category {
+      color: #5f5751;
+ 
+      font-size: 17px;
+      font-weight: 600;
+ 
+      margin-bottom: 25px;
+ 
+      position: relative;
+      padding-left: 55px;
+    }
+ 
+    .category::before {
+      content: "";
+ 
+      position: absolute;
+      left: 0;
+      top: 50%;
+ 
+      width: 40px;
+      height: 1px;
+ 
+      background: #a88c69;
+    }
+ 
+ 
+    /* MAIN HEADING */
+ 
+    .hero-content h1 {
+      font-size: clamp(48px, 5vw, 76px);
+ 
+      line-height: 1.15;
+ 
+      font-weight: 800;
+ 
+      margin-bottom: 28px;
+    }
+ 
+    .hero-content h1 span {
+      color: #8d1535;
+    }
+ 
+ 
+    /* DESCRIPTION */
+ 
+    .description {
+      font-size: 19px;
+ 
+      line-height: 2;
+ 
+      color: #514943;
+ 
+      max-width: 650px;
+ 
+      margin-bottom: 35px;
+    }
+ 
+    .description strong {
+      color: #302a27;
+    }
+ 
+ 
+    /* BUTTONS */
+ 
+    .buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+ 
+    .btn {
+      padding: 16px 28px;
+ 
+      text-decoration: none;
+ 
+      font-size: 17px;
+      font-weight: 700;
+ 
+      border-radius: 7px;
+ 
+      transition: 0.3s;
+    }
+ 
+    .btn-primary {
+      background: #8d1535;
+      color: white;
+ 
+      border: 2px solid #8d1535;
+    }
+ 
+    .btn-primary:hover {
+      background: #6e1029;
+      border-color: #6e1029;
+    }
+ 
+    .btn-secondary {
+      color: #8d1535;
+ 
+      border: 2px solid #8d1535;
+ 
+      background: transparent;
+    }
+ 
+    .btn-secondary:hover {
+      background: #8d1535;
+      color: white;
+    }
+ 
+ 
+    /* =========================
+       SERVICES
+    ========================= */
+ 
+    .services {
+      background: #faf6ee;
+ 
+      padding: 55px 5%;
+ 
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+ 
+      border-top: 1px solid #ddd3c4;
+    }
+ 
+    .service {
+      text-align: center;
+ 
+      padding: 15px 30px;
+ 
+      border-right: 1px solid #d8cfc2;
+    }
+ 
+    .service:last-child {
+      border-right: none;
+    }
+ 
+    .service-icon {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+ 
+    .service h3 {
+      font-size: 21px;
+      margin-bottom: 8px;
+    }
+ 
+    .service p {
+      color: #665e57;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+ 
+ 
+    /* =========================
+       MOBILE
+    ========================= */
+ 
+    @media (max-width: 900px) {
+ 
+      header {
+        height: 75px;
+        padding: 0 5%;
+      }
+ 
+      .logo {
+        font-size: 25px;
+      }
+ 
+      nav {
+        display: none;
+      }
+ 
+      .hero {
+        grid-template-columns: 1fr;
+      }
+ 
+      .hero-image {
+        min-height: 430px;
+      }
+ 
+      .photo-text {
+        margin-top: 55px;
+      }
+ 
+      .photo-text h2 {
+        font-size: 40px;
+      }
+ 
+      .hero-content {
+        padding: 55px 7%;
+      }
+ 
+      .hero-content h1 {
+        font-size: 48px;
+      }
+ 
+      .description {
+        font-size: 17px;
+      }
+ 
+      .services {
+        grid-template-columns: 1fr 1fr;
+      }
+ 
+      .service {
+        border-right: none;
+        border-bottom: 1px solid #d8cfc2;
+        padding: 25px 15px;
+      }
+    }
+ 
+ 
+    @media (max-width: 550px) {
+ 
+      .hero-image {
+        min-height: 350px;
+      }
+ 
+      .hero-content {
+        padding: 45px 25px;
+      }
+ 
+      .category {
+        font-size: 14px;
+      }
+ 
+      .hero-content h1 {
+        font-size: 40px;
+      }
+ 
+      .description {
+        font-size: 16px;
+        line-height: 1.8;
+      }
+ 
+      .buttons {
+        flex-direction: column;
+      }
+ 
+      .btn {
+        text-align: center;
+        width: 100%;
+      }
+ 
+      .services {
+        grid-template-columns: 1fr;
+      }
+ 
+      .service {
+        border-bottom: 1px solid #ddd3c4;
+      }
+    }
+ 
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">ब्रदर्स <span>फोटोग्राफी</span></div>
+    <nav class="links">
+      <a href="#home">मुख्यपान</a>
+      <a href="#about">आमच्याविषयी</a>
+      <a href="#services">सेवा</a>
+      <a href="#gallery">गॅलरी</a>
+    </nav>
+    <a href="#enquiry" class="nav-cta">चौकशी करा</a>
+    <button class="burger" id="burgerBtn" aria-label="मेनू उघडा">☰</button>
+  </div>
+  <div class="mobile-links" id="mobileLinks">
+    <a href="#home">मुख्यपान</a>
+    <a href="#about">आमच्याविषयी</a>
+    <a href="#services">सेवा</a>
+    <a href="#gallery">गॅलरी</a>
+    <a href="#enquiry">चौकशी करा</a>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap" style="display:contents;">
+    <div class="hero-text">
+      <div class="eyebrow">वेडिंग · पोर्ट्रेट · कौटुंबिक छायाचित्रण</div>
+      <h3>क्षण तुमचे, <em>विश्वास तुमचा…</em><br>त्या आठवणी जपण्याची जबाबदारी आमची.</h3>
+      <p>ब्रदर्स फोटोग्राफी — नैसर्गिक प्रकाश, खरे भाव आणि तुमच्या आठवणी कायमस्वरूपी जपणारे छायाचित्रण. लग्न असो वा कौटुंबिक सोहळा, आम्ही प्रत्येक क्षण जिवंत करतो.</p>
+      <div class="hero-actions">
+        <a href="#enquiry" class="btn-primary">चौकशी करा →</a>
+        <a href="#gallery" class="btn-ghost">आमचे काम पहा</a>
+      </div>
+    </div>
+    <div class="hero-collage">
+      <img class="hc1" src="https://images.unsplash.com/photo-1587271636175-90d58cdad458?w=700&h=800&fit=crop&auto=format&q=80" alt="लग्न छायाचित्रण">
+      <img class="hc2" src="https://images.unsplash.com/photo-1630526720753-aa4e71acf67d?w=600&h=600&fit=crop&auto=format&q=80" alt="पोर्ट्रेट छायाचित्रण">
+      <img class="hc3" src="https://images.unsplash.com/photo-1722952934708-749c22eb2e58?w=400&h=400&fit=crop&auto=format&q=80" alt="कँडिड क्षण">
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-inner">
+    <span>लग्न छायाचित्रण</span>•<span>प्री-वेडिंग शूट</span>•<span>पोर्ट्रेट सेशन</span>•<span>कौटुंबिक फोटोशूट</span>•<span>इव्हेंट कव्हरेज</span>•
+    <span>लग्न छायाचित्रण</span>•<span>प्री-वेडिंग शूट</span>•<span>पोर्ट्रेट सेशन</span>•<span>कौटुंबिक फोटोशूट</span>•<span>इव्हेंट कव्हरेज</span>•
+  </div>
+</div>
+
+<section class="about wrap" id="about">
+  <div>
+    <section class="hero">
+ 
+ 
+    <!-- LEFT -->
+ 
+    <div class="hero-image">
+ 
+      <div class="photo-text">
+ 
+        <h2>Photography</h2>
+ 
+        <p>
+          FREEZES TIME FOREVER
+        </p>
+ 
+      </div>
+ 
+    </div>
+ 
+ 
+ 
+    <!-- RIGHT -->
+ 
+    <div class="hero-content">
+ 
+      <div class="category">
+        लग्न | प्री-वेडिंग | पोर्ट्रेट | फॅमिली
+      </div>
+ 
+ 
+      <h1>
+ 
+        फोटोग्राफी<br>
+ 
+        <span>फक्त फोटो नाही...</span><br>
+ 
+        ती भावना आहे.
+ 
+      </h1>
+ 
+ 
+      <p class="description">
+ 
+        जीवनातील प्रत्येक खास क्षणाला सुंदर रूप देणारे,
+        तुमच्या आठवणींना कायमस्वरूपी जपणारे छायाचित्रण.
+ 
+        <br><br>
+ 
+        लग्नाचा खास दिवस असो, Pre-Wedding शूट असो
+        किंवा कुटुंबासोबतचा अविस्मरणीय क्षण —
+        <strong>आम्ही तुमच्या कथा आमच्या कॅमेऱ्यातून जिवंत करतो.</strong>
+ 
+      </p>
+ 
+    </div>
+ 
+  </section>
+ 
+ 
+ 
+  <!-- =========================
+       SERVICES
+  ========================= -->
+ 
+  <section class="services">
+ 
+ 
+    <div class="service">
+ 
+      <div class="service-icon">
+        📷
+      </div>
+ 
+      <h3>
+        वेडिंग फोटोग्राफी
+      </h3>
+ 
+      <p>
+        प्रत्येक शुभ क्षणाची खास नोंद
+      </p>
+ 
+    </div>
+ 
+ 
+ 
+    <div class="service">
+ 
+      <div class="service-icon">
+        ♡
+      </div>
+ 
+      <h3>
+        प्री-वेडिंग फोटोग्राफी
+      </h3>
+ 
+      <p>
+        प्रेमकथेचे सुंदर चित्रण
+      </p>
+ 
+    </div>
+ 
+ 
+ 
+    <div class="service">
+ 
+      <div class="service-icon">
+        ♙
+      </div>
+ 
+      <h3>
+        पोर्ट्रेट फोटोग्राफी
+      </h3>
+ 
+      <p>
+        तुमच्या व्यक्तिमत्त्वाचा खास अंदाज
+      </p>
+ 
+    </div>
+ 
+ 
+ 
+    <div class="service">
+ 
+      <div class="service-icon">
+        👨‍👩‍👧
+      </div>
+ 
+      <h3>
+        फॅमिली फोटोग्राफी
+      </h3>
+ 
+      <p>
+        कुटुंबाच्या आठवणी, कायमच्या जपलेल्या
+      </p>
+ 
+    </div>
+  </div>
+</section>
+
+<section class="services wrap" id="services">
+  <div class="section-head">
+    <div class="about-label">आमच्या सेवा</div>
+    <h2>प्रत्येक प्रसंगासाठी, योग्य फ्रेम</h2>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div><span class="svc-num">०१</span><h3>लग्न छायाचित्रण</h3><p>हळद ते विदाई — संपूर्ण सोहळ्याचे भावनिक आणि सुंदर टिपण.</p></div>
+    </div>
+    <div class="svc-card">
+      <div><span class="svc-num">०२</span><h3>प्री-वेडिंग शूट</h3><p>तुमच्या आवडत्या जागी, तुमच्या शैलीत — एक खास फोटोशूट अनुभव.</p></div>
+    </div>
+    <div class="svc-card">
+      <div><span class="svc-num">०३</span><h3>पोर्ट्रेट सेशन</h3><p>व्यक्तिमत्त्व उलगडणारे स्टुडिओ व आउटडोअर पोर्ट्रेट.</p></div>
+    </div>
+    <div class="svc-card">
+      <div><span class="svc-num">०४</span><h3>कौटुंबिक व इव्हेंट</h3><p>वाढदिवस, बारसे, गेट-टुगेदर — कुटुंबाच्या आठवणी जपणारे कव्हरेज.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="about-label">आमचे काम</div>
+      <h2>अलीकडील काही आवडते क्षण</h2>
+    </div>
+    <div class="gal-grid">
+      <div class="gal-item big" onclick="openLightbox('https://picsum.photos/seed/g1-mh/900/900')">
+        <img src="https://picsum.photos/seed/g1-mh/900/900" alt="गॅलरी फोटो १">
+        <div class="gal-cap">मंगल कार्यालय, पुणे</div>
+      </div>
+      <div class="gal-item" onclick="openLightbox('https://picsum.photos/seed/g2-mh/500/500')">
+        <img src="https://picsum.photos/seed/g2-mh/500/500" alt="गॅलरी फोटो २">
+        <div class="gal-cap">कँडिड क्षण</div>
+      </div>
+      <div class="gal-item" onclick="openLightbox('https://picsum.photos/seed/g3-mh/500/500')">
+        <img src="https://picsum.photos/seed/g3-mh/500/500" alt="गॅलरी फोटो ३">
+        <div class="gal-cap">पोर्ट्रेट सेशन</div>
+      </div>
+      <div class="gal-item" onclick="openLightbox('https://picsum.photos/seed/g4-mh/500/500')">
+        <img src="https://picsum.photos/seed/g4-mh/500/500" alt="गॅलरी फोटो ४">
+        <div class="gal-cap">प्री-वेडिंग</div>
+      </div>
+      <div class="gal-item" onclick="openLightbox('https://picsum.photos/seed/g5-mh/500/500')">
+        <img src="https://picsum.photos/seed/g5-mh/500/500" alt="गॅलरी फोटो ५">
+        <div class="gal-cap">कौटुंबिक फोटोशूट</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="enquiry wrap" id="enquiry">
+  <div class="enq-box">
+    <div class="enq-left">
+      <h2>तुमचा प्रश्न आम्हाला सांगा</h2>
+      <p>खालील रकाना भरा — तुमचा संदेश थेट व्हॉट्सअॅपवर तयार होईल आणि एका क्लिकवर आम्हाला पाठवता येईल. आम्ही लवकरात लवकर उत्तर देऊ.</p>
+      <div class="wa-numbers">
+        <div>📞 ज्ञानेश्वर — +91 98347 51507</div>
+        <div>📞 गणेश — +91 84460 31478</div>
+      </div>
+    </div>
+    <div class="enq-right">
+      <div class="field">
+        <label for="custName">तुमचे नाव</label>
+        <input type="text" id="custName" placeholder="उदा. सुजाता पाटील">
+      </div>
+      <div class="field">
+        <label>कोणाशी बोलायचे आहे?</label>
+        <div class="radio-row">
+          <label class="radio-opt">
+            <input type="radio" name="photog" value="919834751507" checked>
+            ज्ञानेश्वर
+          </label>
+          <label class="radio-opt">
+            <input type="radio" name="photog" value="918446031478">
+            गणेश
+          </label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="custMsg">तुमचा प्रश्न / गरज</label>
+        <textarea id="custMsg" placeholder="उदा. आम्हाला डिसेंबरमधील लग्नासाठी फोटोग्राफी हवी आहे, कृपया पॅकेज व उपलब्धता सांगा."></textarea>
+      </div>
+      <button class="send-btn" onclick="sendEnquiry()">व्हॉट्सअॅपवर पाठवा 💬</button>
+      <p class="hint">बटण दाबल्यावर व्हॉट्सअॅप उघडेल, तुमचा संदेश आधीच टाईप केलेला असेल — फक्त पाठवा दाबा.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">ब्रदर्स <span>फोटोग्राफी</span></div>
+        <p style="max-width:34ch;color:rgba(255,255,255,0.6);font-size:0.9rem;margin-top:10px;">क्षण तुमचे, विश्वास तुमचा…
+त्या आठवणी जपण्याची जबाबदारी आमची.</p><br/>
+<span> <b>प्रो. प्रा - गणेश पोपळे & ज्ञानेश्वर पोपळे</b></span>
+      </div>
+      <div class="foot-links">
+        <a href="#about">आमच्याविषयी</a>
+        <a href="#services">सेवा</a>
+        <a href="#gallery">गॅलरी</a>
+        <a href="#enquiry">चौकशी करा</a>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 ब्रदर्स फोटोग्राफी. सर्व हक्क राखीव.</div>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/919834751507" target="_blank" aria-label="व्हॉट्सअॅपवर संपर्क साधा">💬</a>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="मोठा फोटो">
+</div>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileLinks = document.getElementById('mobileLinks');
+  burgerBtn.addEventListener('click', () => mobileLinks.classList.toggle('open'));
+  document.querySelectorAll('.mobile-links a').forEach(a => a.addEventListener('click', () => mobileLinks.classList.remove('open')));
+
+  function openLightbox(src){
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if(e.target.id === 'lightbox') closeLightbox();
+  });
+
+  function sendEnquiry(){
+    const name = document.getElementById('custName').value.trim();
+    const msg = document.getElementById('custMsg').value.trim();
+    const number = document.querySelector('input[name="photog"]:checked').value;
+
+    if(!msg){
+      alert('कृपया तुमचा प्रश्न लिहा.');
+      return;
+    }
+    const greeting = name ? `नमस्कार, माझे नाव ${name} आहे.` : 'नमस्कार,';
+    const fullText = `${greeting}\n${msg}`;
+    const url = `https://wa.me/${number}?text=${encodeURIComponent(fullText)}`;
+    window.open(url, '_blank');
+  }
+</script>
+
+</body>
+</html>
